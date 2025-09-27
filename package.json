@@ -1,0 +1,25 @@
+{
+  "name": "evchargerbuddy",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/Parth-Bhovad/EVChargerBuddy#readme",
+  "bugs": {
+    "url": "https://github.com/Parth-Bhovad/EVChargerBuddy/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Parth-Bhovad/EVChargerBuddy.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "mongoose": "^8.18.2"
+  }
+}

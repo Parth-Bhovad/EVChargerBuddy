@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 const path = require('path');
-require('dotenv').config();
+dotenv.config();
 
 // Import routes
 const userRoutes = require('./routes/user.route');
@@ -16,9 +17,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Body parsing middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+const mongodbUri = process.env.MONGO_URI || 'mongodb://localhost:27017/evchargerbuddy';
 // Database connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/evchargerbuddy')
+mongoose.connect(mongodbUri)
 .then(() => console.log('MongoDB connected successfully'))
 .catch(err => console.error('MongoDB connection error:', err));
 
