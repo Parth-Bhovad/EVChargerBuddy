@@ -101,7 +101,7 @@
             return nearest;
         }
         let allCoords = [];
-        fetch('http://localhost:3000/api/v1/users/location/')
+        fetch('https://evchargerbuddy.onrender.com/api/v1/users/location/')
             .then(response => response.json())
             .then(data => {
                 allCoords = getCoordinatesArray(data);
