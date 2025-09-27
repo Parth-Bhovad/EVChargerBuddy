@@ -5,4 +5,4 @@ There are lots of EV users but very less EV charging stations. But all EV users 
 - **Hosts** can offer their private charging point to nearby drivers and earn a small fee.
 - **Guests** can quickly find and pay for charging nearby when they’re stuck.
 
-[Live Link](https://evchargerbuddy.onrender.com/)
+[Live Link](https://evchargerbuddy.onrender.com/) (Note: Open it in PC).
