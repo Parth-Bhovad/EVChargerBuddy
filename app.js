@@ -72,15 +72,6 @@ app.get('/api', (req, res) => {
   });
 });
 
-// 404 handler
-// 404 handler for every unmatched route
-app.all('/*', (req, res) => {
-  res.status(404).json({
-    error: 'Route not found',
-    message: `The endpoint ${req.originalUrl} does not exist`
-  });
-});
-
 // Global error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
