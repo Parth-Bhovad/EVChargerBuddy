@@ -1,0 +1,133 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #101813;
+  color: #fff;
+  font-family: 'Poppins', Arial, sans-serif;
+  min-height: 100vh;
+}
+.main-layout {
+  display: flex;
+  min-height: 100vh;
+}
+.left-panel {
+  background: #101813;
+  color: #40c057;
+  flex: 1.1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3em 2em;
+}
+.tagline {
+  font-size: 2.7em;
+  font-weight: 700;
+  line-height: 1.15em;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 30px #0f200b50;
+}
+.right-panel {
+  flex: 1.3;
+  background: #181d20;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-width: 350px;
+}
+.map-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2em 2.8em 1em 2em;
+  position: relative;
+}
+.brand-name {
+  font-family: 'Orbitron', Arial, sans-serif;
+  font-size: 2em;
+  font-weight: 700;
+  color: #40c057;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  transition: color .2s;
+}
+.menu-dots {
+  display: flex;
+  gap: 6px;
+  cursor: pointer;
+  align-items: center;
+}
+.menu-dots span {
+  width: 9px;
+  height: 9px;
+  background: #fff;
+  border-radius: 50%;
+  display: block;
+  margin: 2px;
+  box-shadow: 0 0 4px #40c05777;
+  transition: background .2s;
+}
+.menu-dots:hover span {
+  background: #40c057;
+}
+.profile-popup {
+  position: absolute;
+  top: 3.5em;
+  right: 3em;
+  background: #101813;
+  color: #fff;
+  border-radius: 9px;
+  box-shadow: 0 2px 18px #0006;
+  padding: 1em 2em;
+  min-width: 120px;
+  font-size: 1em;
+  display: none;
+  z-index: 11;
+}
+.profile-popup a {
+  color: #40c057;
+  text-decoration: none;
+  font-weight: 600;
+}
+.map-frame-wrap {
+  padding: 1em 2em 2em 2em;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.map-frame-wrap iframe {
+  width: 99%;
+  height: 59vh;
+  border-radius: 16px;
+  box-shadow: 0 6px 30px #10181370;
+  border: 2px solid #40c057;
+  background: #101813;
+}
+@media (max-width: 950px) {
+  .main-layout {
+    flex-direction: column;
+  }
+  .map-header, .map-frame-wrap {
+    padding-left: 1.2em;
+    padding-right: 1.2em;
+  }
+  .tagline {
+    font-size: 2em;
+  }
+}
+@media (max-width: 600px) {
+  .main-layout {
+    flex-direction: column;
+  }
+  .tagline, .brand-name {
+    font-size: 1.2em;
+    padding: 1em;
+  }
+  .map-header, .map-frame-wrap {
+    padding-left: .7em;
+    padding-right: .7em;
+  }
+  .map-frame-wrap iframe {
+    height: 36vh;
+  }
+}

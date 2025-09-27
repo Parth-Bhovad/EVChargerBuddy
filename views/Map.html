@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Palghar Map with GPS</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <style>
+        #map {
+            height: 100vh;
+        }
+
+        #gpsBtn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+            padding: 10px 15px;
+            background: white;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="gpsBtn">Get My Location</button>
+    <div id="map"></div>
+
+    <script>
+        // Palghar coords
+        const palgharLat = 19.573348641189096;
+        const palgharLon = 72.77884851119713;
+
+        // Initialize map
+        const map = L.map('map').setView([palgharLat, palgharLon], 13);
+
+        // OpenStreetMap layer
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        // Add Palghar marker
+        L.marker([palgharLat, palgharLon]).addTo(map)
+            .bindPopup("Palghar, Mumbai Region")
+            .openPopup();
+
+        // Boisar marker
+        const boisarLat = 19.711270486486885;
+        const boisarLon = 72.75965546887176;
+        L.marker([boisarLat, boisarLon]).addTo(map)
+            .bindPopup("Boisar, Mumbai Region");
+
+        // Fetch user data from API (existing markers)
+        function getCoordinatesArray(apiResponse) {
+            if (!apiResponse || !Array.isArray(apiResponse.data)) return [];
+            return apiResponse.data
+                .map(user => {
+                    if (user.location && Array.isArray(user.location.coordinates)) {
+                        const username = user.name || 'Unknown';
+                        const [lon, lat] = user.location.coordinates;
+                        return [lat, lon, username];
+                    }
+                    return null;
+                })
+                .filter(Boolean);
+        }
+        function findNearest(userLat, userLon, allCoords) {
+            if (!allCoords || !allCoords.length) return null;
+
+            const toRad = (deg) => deg * Math.PI / 180;
+
+            const haversineDistance = (lat1, lon1, lat2, lon2) => {
+                const R = 6371; // Earth's radius in km
+                const dLat = toRad(lat2 - lat1);
+                const dLon = toRad(lon2 - lon1);
+                const a = Math.sin(dLat / 2) ** 2 +
+                    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+                    Math.sin(dLon / 2) ** 2;
+                const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                return R * c; // distance in km
+            };
+
+            let nearest = null;
+            let minDistance = Infinity;
+
+            allCoords.forEach(coord => {
+                const [lat, lon, name] = coord;
+                const distance = haversineDistance(userLat, userLon, lat, lon);
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    nearest = { lat, lon, name, distanceKm: distance };
+                }
+            });
+
+            return nearest;
+        }
+        let allCoords = [];
+        fetch('http://localhost:3000/api/v1/users/location/')
+            .then(response => response.json())
+            .then(data => {
+                allCoords = getCoordinatesArray(data);
+                allCoords.forEach(c => {
+                    L.marker([c[0], c[1]]).addTo(map)
+                        .bindPopup(`<b>${c[2]}</b><br/>Lat: ${c[0]}<br/>Lon: ${c[1]}`);
+
+                });
+                const gpsBtn = document.getElementById('gpsBtn');
+                gpsBtn.addEventListener('click', () => {
+                    if (!navigator.geolocation) {
+                        alert('Geolocation is not supported by your browser.');
+                        return;
+                    }
+
+                    navigator.geolocation.getCurrentPosition(
+                        (pos) => {
+                            const { latitude, longitude } = pos.coords;
+                            let nearest = findNearest(latitude, longitude, allCoords);
+                            // Add marker for user's location
+                            L.marker([latitude, longitude]).addTo(map)
+                                .bindPopup(`<b>Your Location</b><br/>Lat: ${latitude}<br/>Lon: ${longitude}`)
+                                .openPopup();
+
+                            // Center map on user's location
+                            map.setView([latitude, longitude], 15);
+
+                            L.Routing.control({
+                                waypoints: [
+                                    L.latLng(latitude, longitude),
+                                    L.latLng(nearest.lat, nearest.lon)
+                                ]
+                            }).addTo(map);
+                        },
+                        (err) => {
+                            alert(`Error (${err.code}): ${err.message}`);
+                        },
+                        { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+                    );
+                });
+            })
+            .catch(error => console.error('Error fetching user location:', error));
+    </script>
+</body>
+
+</html>

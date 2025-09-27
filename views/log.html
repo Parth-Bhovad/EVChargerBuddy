@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EVChargerBuddy | Login / Signup</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 30px;
+      background: #f7f9fb;
+      color: #3a3a3a;
+    }
+
+    header {
+      width: 100%;
+      max-width: 520px;
+      text-align: center;
+      padding: 1rem 0 1.5rem 0;
+    }
+
+    .heading {
+      color: #2e2e2e;
+      font-weight: 700;
+      font-size: 2.6rem;
+      letter-spacing: 2px;
+      margin-bottom: 0.3rem;
+    }
+
+    .title {
+      font-weight: 400;
+      letter-spacing: 2px;
+      color: #707070;
+      font-size: 1.15rem;
+    }
+
+    .container {
+      background: #ffffff;
+      box-shadow: 0 8px 30px rgba(59, 59, 59, 0.1);
+      height: 600px;
+      width: 100%;
+      max-width: 500px;
+      border-radius: 15px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .btn {
+      height: 60px;
+      width: 300px;
+      margin: 25px auto;
+      border-radius: 50px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+      background-color: #ededed;
+      user-select: none;
+    }
+
+    .login,
+    .signup {
+      font-size: 22px;
+      font-weight: 600;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      background: transparent;
+      color: #5f5f5f;
+      padding: 0 15px;
+      border-radius: 50px;
+      transition: color 0.3s;
+      user-select: none;
+    }
+
+    .login:hover,
+    .signup:hover {
+      color: #222222;
+    }
+
+    .slider {
+      height: 60px;
+      width: 150px;
+      border-radius: 50px;
+      background: #d4dce7;
+      position: absolute;
+      top: 20px;
+      left: 100px;
+      transition: all 0.5s ease-in-out;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+    }
+
+    .moveslider {
+      left: 250px;
+    }
+
+    .form-section {
+      height: 500px;
+      width: 1000px;
+      padding: 20px 0;
+      display: flex;
+      position: relative;
+      transition: all 0.5s ease-in-out;
+      left: 0px;
+    }
+
+    .form-section-move {
+      left: -500px;
+    }
+
+    .login-box,
+    .signup-box {
+      height: 100%;
+      width: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0px 40px;
+      color: #444444;
+    }
+
+    .login-box {
+      gap: 50px;
+    }
+
+    .signup-box {
+      gap: 30px;
+    }
+
+    .ele {
+      height: 55px;
+      width: 400px;
+      border: 1.5px solid #c0c5d9;
+      border-radius: 50px;
+      padding-left: 30px;
+      font-size: 17px;
+      color: #555555;
+      outline: none;
+      background-color: #fafafa;
+      transition: border-color 0.3s;
+    }
+
+    .ele:focus {
+      border-color: #7e8eb2;
+      background-color: #ffffff;
+      box-shadow: 0 0 8px rgba(126, 142, 178, 0.5);
+    }
+
+    .clkbtn {
+      height: 55px;
+      width: 150px;
+      border-radius: 50px;
+      background: #5b6b92;
+      font-size: 20px;
+      border: none;
+      cursor: pointer;
+      color: white;
+      font-weight: 600;
+      box-shadow: 0 6px 20px rgba(51, 65, 96, 0.4);
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+
+    .clkbtn:hover {
+      background: #384a73;
+    }
+
+    .psw {
+      margin-top: 10px;
+      font-size: 15.5px;
+      color: #646464;
+      user-select: none;
+    }
+
+    .psw a {
+      color: #384a73;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .psw a:hover {
+      color: #1e2b42;
+    }
+
+    /* Responsive */
+    @media screen and (max-width: 650px) {
+      .container {
+        height: auto;
+        max-width: 320px;
+      }
+      .title {
+        font-size: 14px;
+      }
+      .btn {
+        height: 50px;
+        width: 220px;
+        margin: 20px auto;
+      }
+      .login,
+      .signup {
+        font-size: 19px;
+      }
+      .slider {
+        height: 50px;
+        width: 110px;
+        left: 55px;
+      }
+      .moveslider {
+        left: 145px;
+      }
+      .form-section {
+        flex-wrap: wrap;
+        height: auto;
+        width: 320px;
+        padding: 15px 0;
+        left: 0px !important;
+      }
+      .login-box,
+      .signup-box {
+        height: auto;
+        width: 100%;
+        padding: 10px 20px;
+      }
+      .ele {
+        height: 50px;
+        width: 100%;
+        font-size: 16px;
+        padding-left: 18px;
+      }
+      .clkbtn {
+        height: 50px;
+        width: 100%;
+        font-size: 18px;
+      }
+    }
+
+    @media screen and (max-width: 370px) {
+      header {
+        padding: 0 5px;
+      }
+      .heading {
+        font-size: 26px;
+      }
+      .title {
+        font-size: 12px;
+      }
+    }
+  </style>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const signup = document.querySelector('.signup');
+      const login = document.querySelector('.login');
+      const slider = document.querySelector('.slider');
+      const formSection = document.querySelector('.form-section');
+
+      signup.addEventListener('click', () => {
+        slider.classList.add('moveslider');
+        formSection.classList.add('form-section-move');
+      });
+
+      login.addEventListener('click', () => {
+        slider.classList.remove('moveslider');
+        formSection.classList.remove('form-section-move');
+      });
+    });
+  </script>
+
+</head>
+<body>
+  <header>
+    <h1 class="heading">EVChargerBuddy</h1>
+    <h3 class="title">Login / Signup Page</h3>
+  </header>
+  <div class="container">
+    <div class="slider"></div>
+    <div class="btn">
+      <button class="login">Login</button>
+      <button class="signup">Signup</button>
+    </div>
+    <div class="form-section">
+      <div class="login-box">
+        <input type="email" class="email ele" placeholder="youremail@email.com" />
+        <input type="password" class="password ele" placeholder="Password" />
+        <button class="clkbtn">Login</button>
+        <span class="psw">Forgot <a href="#" onclick="alert('Password reset link sent (demo)');">password?</a></span>
+      </div>
+      <div class="signup-box">
+        <input type="text" class="name ele" placeholder="Enter your name" />
+        <input type="email" class="email ele" placeholder="youremail@email.com" />
+        <input type="password" class="password ele" placeholder="Password" />
+        <input type="password" class="password ele" placeholder="Confirm password" />
+        <button class="clkbtn">Signup</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

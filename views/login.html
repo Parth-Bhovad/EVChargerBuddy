@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EVChargerBuddy | Login / Signup</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 30px;
+      background: #0c0f0d;
+      color: #e6f2ec;
+    }
+
+    header {
+      width: 100%;
+      max-width: 520px;
+      text-align: center;
+      padding: 1rem 0 1.5rem 0;
+    }
+
+    .heading {
+      color: #a8f0c4;
+      font-weight: 700;
+      font-size: 2.6rem;
+      letter-spacing: 2px;
+      margin-bottom: 0.3rem;
+    }
+
+    .title {
+      font-weight: 400;
+      letter-spacing: 2px;
+      color: #9aa7a0;
+      font-size: 1.15rem;
+    }
+
+    .container {
+      background: #1b1f1d;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+      height: 600px;
+      width: 100%;
+      max-width: 500px;
+      border-radius: 15px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .btn {
+      height: 60px;
+      width: 300px;
+      margin: 25px auto;
+      border-radius: 50px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background-color: #2d322f;
+      user-select: none;
+      position: relative;
+    }
+
+    .login,
+    .signup {
+      font-size: 22px;
+      font-weight: 600;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      background: transparent;
+      color: #a0b8a9;
+      padding: 0 15px;
+      border-radius: 50px;
+      transition: color 0.3s;
+      user-select: none;
+      z-index: 2;
+    }
+
+    .login:hover,
+    .signup:hover {
+      color: #e6f2ec;
+    }
+
+    .slider {
+      height: 60px;
+      width: 150px;
+      border-radius: 50px;
+      background: #1f5b3f;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      transition: all 0.5s ease-in-out;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      z-index: 1;
+    }
+
+    .moveslider {
+      left: 150px;
+    }
+
+    .form-section {
+      height: 500px;
+      width: 1000px;
+      padding: 20px 0;
+      display: flex;
+      position: relative;
+      transition: all 0.5s ease-in-out;
+      left: 0px;
+    }
+
+    .form-section-move {
+      left: -500px;
+    }
+
+    .login-box,
+    .signup-box {
+      height: 100%;
+      width: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0px 40px;
+      color: #e6f2ec;
+    }
+
+    .login-box {
+      gap: 50px;
+    }
+
+    .signup-box {
+      gap: 30px;
+    }
+
+    .ele {
+      height: 55px;
+      width: 400px;
+      border: 1.5px solid #3a4741;
+      border-radius: 50px;
+      padding-left: 30px;
+      font-size: 17px;
+      color: #e6f2ec;
+      outline: none;
+      background-color: #262b29;
+      transition: border-color 0.3s, background-color 0.3s;
+    }
+
+    .ele:focus {
+      border-color: #1f5b3f;
+      background-color: #303632;
+      box-shadow: 0 0 8px rgba(31, 91, 63, 0.5);
+    }
+
+    .clkbtn {
+      height: 55px;
+      width: 150px;
+      border-radius: 50px;
+      background: #1f5b3f;
+      font-size: 20px;
+      border: none;
+      cursor: pointer;
+      color: #ffffff;
+      font-weight: 600;
+      box-shadow: 0 6px 20px rgba(31, 91, 63, 0.4);
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+
+    .clkbtn:hover {
+      background: #287a53;
+    }
+
+    .psw {
+      margin-top: 10px;
+      font-size: 15.5px;
+      color: #a8b8ae;
+      user-select: none;
+    }
+
+    .psw a {
+      color: #1f5b3f;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .psw a:hover {
+      color: #287a53;
+    }
+
+    @media screen and (max-width: 650px) {
+      .container {
+        height: auto;
+        max-width: 320px;
+      }
+
+      .title {
+        font-size: 14px;
+      }
+
+      .btn {
+        height: 50px;
+        width: 220px;
+        margin: 20px auto;
+      }
+
+      .login,
+      .signup {
+        font-size: 19px;
+      }
+
+      .slider {
+        height: 50px;
+        width: 110px;
+      }
+
+      .moveslider {
+        left: 110px;
+      }
+
+      .form-section {
+        flex-wrap: wrap;
+        height: auto;
+        width: 320px;
+        padding: 15px 0;
+        left: 0px !important;
+      }
+
+      .login-box,
+      .signup-box {
+        height: auto;
+        width: 100%;
+        padding: 10px 20px;
+      }
+
+      .ele {
+        height: 50px;
+        width: 100%;
+        font-size: 16px;
+        padding-left: 18px;
+      }
+
+      .clkbtn {
+        height: 50px;
+        width: 100%;
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1 class="heading">EVChargerBuddy</h1>
+    <h3 class="title">Login / Signup Page</h3>
+  </header>
+  <div class="container">
+    <div class="btn">
+      <div class="slider"></div>
+      <button class="login">Login</button>
+      <button class="signup">Signup</button>
+    </div>
+    <div class="form-section">
+      <div class="login-box">
+        <input type="email" class="email ele" placeholder="youremail@email.com" />
+        <input type="password" class="password ele" placeholder="Password" />
+        <button class="clkbtn">Login</button>
+        <span class="psw">Forgot <a href="#" onclick="alert('Password reset link sent (demo)');">password?</a></span>
+      </div>
+      <div class="signup-box">
+        <input type="text" class="name ele" placeholder="Enter your name" />
+        <input type="email" class="email ele" placeholder="youremail@email.com" />
+        <input type="text" class="number ele" placeholder="Enter your number" />
+        <input type="password" class="password ele" placeholder="Password" />
+        <input type="password" class="password ele" placeholder="Confirm password" />
+        <button class="clkbtn" id="signupBtn">Signup</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let slider = document.querySelector('.slider');
+    let isLogin = true;
+    window.addEventListener('DOMContentLoaded', () => {
+      const signup = document.querySelector('.signup');
+      const login = document.querySelector('.login');
+      slider = document.querySelector('.slider');
+      const formSection = document.querySelector('.form-section');
+
+      signup.addEventListener('click', () => {
+        slider.classList.add('moveslider');
+        formSection.classList.add('form-section-move');
+        isLogin = false;
+      });
+
+      login.addEventListener('click', () => {
+        slider.classList.remove('moveslider');
+        formSection.classList.remove('form-section-move');
+        isLogin = true;
+      });
+    });
+
+    // login
+    document.querySelector('.login-box .clkbtn').addEventListener('click', () => {
+      const email = document.querySelector('.login-box .email').value;
+      const password = document.querySelector('.login-box .password').value;
+
+      fetch('http://localhost:3000/api/v1/users/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password
+        })
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            alert('Login successful!');
+            window.location.href = '/map';
+          } else {
+            alert('Login failed: ' + data.message);
+          }
+        })
+        .catch(error => {
+          console.error('Error during login:', error);
+          alert('An error occurred during login. Please try again later.');
+        });
+    });
+
+    // signup
+    document.querySelector('#signupBtn').addEventListener('click', () => {
+      const name = document.querySelector('.signup-box .name').value;
+      const email = document.querySelector('.signup-box .email').value;
+      const number = document.querySelector('.signup-box .number').value;
+      const password = document.querySelectorAll('.signup-box .password')[0].value;
+      const confirmPassword = document.querySelectorAll('.signup-box .password')[1].value;
+
+      if (password !== confirmPassword) {
+        alert('Passwords do not match!');
+        return;
+      }
+
+      fetch('http://localhost:3000/api/v1/users/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          number: number,
+          password: password
+        })
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            alert('Signup successful! Please log in.');
+            document.querySelector('.login').click();
+          } else {
+            alert('Signup failed: ' + data.message);
+          }
+        })
+        .catch(error => {
+          console.error('Error during signup:', error);
+          alert('An error occurred during signup. Please try again later.');
+        });
+    });
+  </script>
+</body>
+
+</html>

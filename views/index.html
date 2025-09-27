@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EVChargerBuddy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* subtle hero background gradient */
+    .hero-bg {
+      background: linear-gradient(135deg, #2dd4bf, #2563eb);
+    }
+  </style>
+</head>
+<body class="text-gray-800">
+  <!-- Navbar -->
+  <header class="bg-white shadow-md fixed w-full z-50">
+    <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="#" class="text-2xl font-bold text-teal-600">EVChargerBuddy</a>
+      <ul class="hidden md:flex space-x-8">
+        <li><a href="/login" class="hover:text-teal-600">Signup</a></li>
+        <li><a href="/login" class="hover:text-teal-600">Login</a></li>
+        <li><a href="/profile" class="hover:text-teal-600">Profile</a></li>
+        <li><a href="/map" class="hover:text-teal-600">Map</a></li>
+      </ul>
+      <div class="md:hidden">
+        <!-- optional hamburger for mobile -->
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-bg text-white pt-28 pb-20">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-6xl font-extrabold mb-4">
+        Turn Every EV Owner Into a Charging Station
+      </h1>
+      <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+        Find and offer EV charging anywhere, anytime. A peer-to-peer network that makes charging easy, transparent, and rewarding.
+      </p>
+      <a href="/signup" class="bg-white text-teal-600 px-6 py-3 rounded-full font-semibold shadow hover:bg-gray-100 transition">
+        Get Started
+      </a>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Why EVChargerBuddy?</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-2xl p-6 shadow hover:shadow-lg transition">
+          <div class="text-teal-600 text-4xl mb-4">🔌</div>
+          <h3 class="text-xl font-semibold mb-2">Find Chargers Instantly</h3>
+          <p>Locate nearby EV owners offering charging and never get stranded again.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 shadow hover:shadow-lg transition">
+          <div class="text-teal-600 text-4xl mb-4">💸</div>
+          <h3 class="text-xl font-semibold mb-2">Earn While You Charge</h3>
+          <p>Offer your charging point and earn extra income while helping others.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 shadow hover:shadow-lg transition">
+          <div class="text-teal-600 text-4xl mb-4">🤝</div>
+          <h3 class="text-xl font-semibold mb-2">Trusted & Transparent</h3>
+          <p>Mutual benefits, clear pricing, and community-driven reliability.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white py-6 border-t">
+    <div class="container mx-auto px-4 text-center text-gray-500">
+      © 2025 EVChargerBuddy. All rights reserved.
+    </div>
+  </footer>
+</body>
+</html>
